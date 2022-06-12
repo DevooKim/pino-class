@@ -1,9 +1,7 @@
 const pino = require("pino");
 
-// destination의 dir이 없는 경우 에러처리..?
-
 class LoggerFactory {
-    constructor({ destination, sync }) {
+    constructor({ destination }) {
         this.logger = pino(
             {
                 formatters: {
@@ -14,7 +12,7 @@ class LoggerFactory {
             },
             pino.destination({
                 dest: destination,
-                sync,
+                mkdir: true,
             })
         );
     }
